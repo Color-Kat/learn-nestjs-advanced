@@ -6,12 +6,6 @@ export class SongsService {
     private readonly songs = [];
 
     findAll() {
-        throw new HttpException(
-            'mess',
-            HttpStatus.GATEWAY_TIMEOUT, {
-                cause: new Error('mess123'),
-            }
-        );
         return this.songs;
     }
 
