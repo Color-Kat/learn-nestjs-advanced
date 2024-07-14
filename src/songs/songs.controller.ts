@@ -24,7 +24,6 @@ export class SongsController {
     create(
         @Body() dto: CreateSongDto
     ) {
-        console.log(dto);
         return this.songsService.create('Create a new song');
     }
 
