@@ -16,12 +16,13 @@ export class Song {
     @Column('time')
     duration: Date;
 
-    @Column('text')
+    @Column('text', { nullable: true })
     lyrics: string;
 
-    @ManyToMany(() => Artist, (artist) => artist.songs, {cascade: true})
-    @JoinTable({name: 'songs_artists'})
-    artists: Artist[];
+    // @ManyToMany(() => Artist, (artist) => artist.songs, {cascade: true})
+    // @JoinTable({name: 'songs_artists'})
+    @Column('varchar', { array: true })
+    artists: string[];
 
     @ManyToOne(() => Playlist, (playlist) => playlist.songs)
     playlist: Playlist;

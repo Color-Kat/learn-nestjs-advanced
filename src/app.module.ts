@@ -6,6 +6,10 @@ import { LoggerMiddleware } from "./common/middleware/logger/logger.middleware";
 import { SongsController } from "./songs/songs.controller";
 import { TypeOrmModule } from "@nestjs/typeorm";
 import { DataSource } from "typeorm";
+import { Song } from "./songs/song.entity";
+import { User } from "./users/user.entity";
+import { Artist } from "./artists/artist.entity";
+import { Playlist } from "./playlists/playlist.entity";
 
 @Module({
     imports: [
@@ -17,7 +21,7 @@ import { DataSource } from "typeorm";
             port: 5432,
             username: 'postgres',
             password: 'root',
-            autoLoadEntities: true,
+            entities: [User, Song, Artist, Playlist],
             synchronize: true
         })
     ],

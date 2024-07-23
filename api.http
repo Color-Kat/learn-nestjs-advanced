@@ -10,7 +10,7 @@ Content-Type: application/json
 
 {
   "title": "Sharks",
-  "artists": ["Imagine Dragons"],
+  "artists": ["Imagine Dragons", "Eminem"],
   "duration": "03:01",
   "releasedDate": "2005-12-06"
 }

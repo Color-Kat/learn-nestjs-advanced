@@ -28,7 +28,7 @@ export class SongsController {
     create(
         @Body() dto: CreateSongDto
     ) {
-        return this.songsService.create("Create a new song");
+        return this.songsService.create(dto);
     }
 
     @Put(":id")
