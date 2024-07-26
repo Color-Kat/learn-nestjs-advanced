@@ -1,19 +1,32 @@
 ###
 GET http://localhost:3000
 
-###
+### Get all
 GET http://localhost:3000/songs
 
-###
+### Get by id
+GET http://localhost:3000/songs/2
+
+### Create
 POST http://localhost:3000/songs
 Content-Type: application/json
 
 {
-  "title": "Sharks",
-  "artists": ["Imagine Dragons", "Eminem"],
+  "title": "Delete",
+  "artists": ["Katy Perry"],
+  "lyrics": "Lal lalaal laalla al lal lalalal lalala.",
   "duration": "03:01",
   "releasedDate": "2005-12-06"
 }
 
-###
-GET http://localhost:3000/songs/123f
+### Update
+PUT http://localhost:3000/songs/1
+Content-Type: application/json
+
+{
+  "title": "Updated song",
+  "duration": "02:55"
+}
+
+### Delete by id
+DELETE http://localhost:3000/songs/4
