@@ -1,4 +1,16 @@
-import { Body, Controller, Delete, Get, HttpStatus, Param, ParseIntPipe, Post, Put } from "@nestjs/common";
+import {
+    Body,
+    Controller,
+    DefaultValuePipe,
+    Delete,
+    Get,
+    HttpStatus,
+    Param,
+    ParseIntPipe,
+    Post,
+    Put,
+    Query
+} from "@nestjs/common";
 import { SongsService } from "./songs.service";
 import { CreateSongDto } from "./dto";
 import { UpdateSongDto } from "./dto/update-song.dto";
@@ -6,12 +18,24 @@ import { UpdateSongDto } from "./dto/update-song.dto";
 @Controller("songs")
 export class SongsController {
 
-    constructor(private songsService: SongsService) {
-    }
+    constructor(private songsService: SongsService) {}
+
+    // @Get()
+    // findAll() {
+    //     return this.songsService.findAll();
+    // }
 
     @Get()
-    findAll() {
-        return this.songsService.findAll();
+    findAllWithPagination(
+        @Query("page", new DefaultValuePipe(1), ParseIntPipe) page: number = 1,
+        @Query("limit", new DefaultValuePipe(10), ParseIntPipe) limit: number = 10
+    ) {
+        limit = Math.min(limit, 100);
+
+        return this.songsService.paginate({
+                                              page,
+                                              limit
+                                          });
     }
 
     @Get(":id")
@@ -20,6 +44,7 @@ export class SongsController {
     ) {
         return this.songsService.findOne(id);
     }
+
 
     @Post()
     create(
@@ -43,6 +68,6 @@ export class SongsController {
     delete(
         @Param("id", new ParseIntPipe()) id: number
     ) {
-        return this.songsService.remove(id)
+        return this.songsService.remove(id);
     }
 }

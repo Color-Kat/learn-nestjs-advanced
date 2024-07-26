@@ -1,8 +1,11 @@
 ###
 GET http://localhost:3000
 
-### Get all
+### Get all (default paginate)
 GET http://localhost:3000/songs
+
+### Get all
+GET http://localhost:3000/songs?limit=1&page=2
 
 ### Get by id
 GET http://localhost:3000/songs/2
@@ -12,11 +15,11 @@ POST http://localhost:3000/songs
 Content-Type: application/json
 
 {
-  "title": "Delete",
+  "title": "Order me",
   "artists": ["Katy Perry"],
   "lyrics": "Lal lalaal laalla al lal lalalal lalala.",
   "duration": "03:01",
-  "releasedDate": "2005-12-06"
+  "releasedDate": "2005-12-12"
 }
 
 ### Update
