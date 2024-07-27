@@ -10,6 +10,7 @@ import { Song } from "./songs/song.entity";
 import { User } from "./users/user.entity";
 import { Artist } from "./artists/artist.entity";
 import { Playlist } from "./playlists/playlist.entity";
+import { PlaylistsModule } from './playlists/playlists.module';
 
 @Module({
     imports: [
@@ -23,7 +24,8 @@ import { Playlist } from "./playlists/playlist.entity";
             password: 'root',
             entities: [User, Song, Artist, Playlist],
             synchronize: true
-        })
+        }),
+        PlaylistsModule
     ],
     controllers: [AppController],
     providers: [AppService]

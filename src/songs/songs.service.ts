@@ -14,20 +14,20 @@ export class SongsService {
 
     constructor(
         @InjectRepository(Song)
-        private readonly songsRepository: Repository<Song>,
+        private readonly songRepository: Repository<Song>,
 
         @InjectRepository(Artist)
-        private readonly artistsRepository: Repository<Artist>,
+        private readonly artistRepository: Repository<Artist>,
     ) {
 
     }
 
     findAll(): Promise<Song[]> {
-        return this.songsRepository.find();
+        return this.songRepository.find();
     }
 
     paginate(options: IPaginationOptions): Promise<Pagination<Song>> {
-        const queryBuilder = this.songsRepository.createQueryBuilder('songs');
+        const queryBuilder = this.songRepository.createQueryBuilder('songs');
         queryBuilder.orderBy('songs.releasedDate', 'DESC')
         queryBuilder.orderBy('songs.id', 'DESC')
 
@@ -35,7 +35,7 @@ export class SongsService {
     }
 
     findOne(id: number): Promise<Song> {
-        return this.songsRepository.findOneBy({ id });
+        return this.songRepository.findOneBy({ id });
     }
 
     async create(songDto: CreateSongDto): Promise<Song> {
@@ -45,17 +45,18 @@ export class SongsService {
         song.lyrics = songDto.lyrics;
         song.releasedDate = songDto.releasedDate;
 
-        const artists = await this.artistsRepository.findByIds(songDto.artists);
+        const artists = await this.artistRepository.findByIds(songDto.artists);
         song.artists = artists;
 
-        return this.songsRepository.save(song);
+        return this.songRepository.save(song);
     }
 
-    update(id: number, songDto: UpdateSongDto): Promise<UpdateResult> {
-        return this.songsRepository.update({id}, songDto as any);
+    async update(id: number, songDto: UpdateSongDto): Promise<UpdateResult> {
+        // TODO fix updating
+        return this.songRepository.update({id}, songDto as any);
     }
 
     remove(id: number): Promise<DeleteResult> {
-        return this.songsRepository.delete({ id });
+        return this.songRepository.delete({ id });
     }
 }

@@ -27,9 +27,20 @@ PUT http://localhost:3000/songs/1
 Content-Type: application/json
 
 {
-  "title": "Updated song",
+  "artists": [2],
+  "title": "Believer",
   "duration": "02:55"
 }
 
 ### Delete by id
 DELETE http://localhost:3000/songs/4
+
+### Create playlist
+POST http://localhost:3000/playlists
+Content-Type: application/json
+
+{
+  "name": "favourites",
+  "user": 4,
+  "songs": [3, 13]
+}
