@@ -44,3 +44,15 @@ Content-Type: application/json
   "user": 4,
   "songs": [3, 13]
 }
+
+
+### Register user
+POST http://localhost:3000/auth/register
+Content-Type: application/json
+
+{
+  "firstName": "coco",
+  "lastName": "sh",
+  "email": "coco@co.co",
+  "password": "123456"
+}

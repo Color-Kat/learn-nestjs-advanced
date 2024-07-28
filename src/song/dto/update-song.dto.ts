@@ -1,5 +1,4 @@
-import { IsArray, IsDateString, IsMilitaryTime, IsNotEmpty, IsNumber, IsOptional, IsString } from "class-validator";
-import { Artist } from "../../artists/artist.entity";
+import { IsArray, IsDateString, IsMilitaryTime, IsNumber, IsOptional, IsString } from "class-validator";
 
 export class UpdateSongDto {
     @IsOptional()

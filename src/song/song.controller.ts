@@ -11,14 +11,14 @@ import {
     Put,
     Query
 } from "@nestjs/common";
-import { SongsService } from "./songs.service";
+import { SongService } from "./song.service";
 import { CreateSongDto } from "./dto";
 import { UpdateSongDto } from "./dto/update-song.dto";
 
 @Controller("songs")
-export class SongsController {
+export class SongController {
 
-    constructor(private songsService: SongsService) {}
+    constructor(private songsService: SongService) {}
 
     // @Get()
     // findAll() {

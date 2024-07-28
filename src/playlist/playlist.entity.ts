@@ -1,7 +1,6 @@
 import { Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
-import * as diagnostics_channel from "diagnostics_channel";
-import { Song } from "../songs/song.entity";
-import { User } from "../users/user.entity";
+import { Song } from "@/song/song.entity";
+import { User } from "@/user/user.entity";
 
 @Entity('playlists')
 export class Playlist {

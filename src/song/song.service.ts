@@ -1,14 +1,14 @@
-import { BadRequestException, HttpException, HttpStatus, Injectable } from "@nestjs/common";
+import { Injectable } from "@nestjs/common";
 import { DeleteResult, Repository, UpdateResult } from "typeorm";
 import { Song } from "./song.entity";
 import { CreateSongDto } from "./dto";
 import { InjectRepository } from "@nestjs/typeorm";
 import { UpdateSongDto } from "./dto/update-song.dto";
 import { IPaginationOptions, paginate, Pagination } from "nestjs-typeorm-paginate";
-import { Artist } from "../artists/artist.entity";
+import { Artist } from "@/artist/artist.entity";
 
 @Injectable()
-export class SongsService {
+export class SongService {
     // local array instead of db
     private readonly songs = [];
 

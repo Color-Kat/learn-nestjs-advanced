@@ -1,20 +1,22 @@
 import { MiddlewareConsumer, Module, NestModule } from "@nestjs/common";
 import { AppController } from "./app.controller";
 import { AppService } from "./app.service";
-import { SongsModule } from "./songs/songs.module";
-import { LoggerMiddleware } from "./common/middleware/logger/logger.middleware";
-import { SongsController } from "./songs/songs.controller";
 import { TypeOrmModule } from "@nestjs/typeorm";
+import { User } from "@/user/user.entity";
+import { PlaylistsModule } from "@/playlist/playlists.module";
+import { AuthModule } from "@/auth/auth.module";
 import { DataSource } from "typeorm";
-import { Song } from "./songs/song.entity";
-import { User } from "./users/user.entity";
-import { Artist } from "./artists/artist.entity";
-import { Playlist } from "./playlists/playlist.entity";
-import { PlaylistsModule } from './playlists/playlists.module';
+import { LoggerMiddleware } from "@/common/middleware/logger/logger.middleware";
+import { Song } from "@/song/song.entity";
+import { Artist } from "@/artist/artist.entity";
+import { Playlist } from "@/playlist/playlist.entity";
+import { SongModule } from "@/song/song.module";
+import { SongController } from "@/song/song.controller";
+import { UserModule } from "@/user/user.module";
 
 @Module({
     imports: [
-        SongsModule,
+        SongModule,
         TypeOrmModule.forRoot({
             type: 'postgres',
             database: 'spotify_clone',
@@ -25,7 +27,9 @@ import { PlaylistsModule } from './playlists/playlists.module';
             entities: [User, Song, Artist, Playlist],
             synchronize: true
         }),
-        PlaylistsModule
+        PlaylistsModule,
+        AuthModule,
+        UserModule
     ],
     controllers: [AppController],
     providers: [AppService]
@@ -39,7 +43,7 @@ export class AppModule implements NestModule {
         // consumer.apply(LoggerMiddleware).forRoutes('songs');
         // consumer.apply(LoggerMiddleware).forRoutes({path: 'songs', method: RequestMethod.POST});
 
-        consumer.apply(LoggerMiddleware).forRoutes(SongsController);
+        consumer.apply(LoggerMiddleware).forRoutes(SongController);
     }
 
 }
