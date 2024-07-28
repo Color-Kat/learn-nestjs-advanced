@@ -15,8 +15,8 @@ POST http://localhost:3000/songs
 Content-Type: application/json
 
 {
-  "title": "Order me",
-  "artists": ["Katy Perry"],
+  "title": "Машина для убийств",
+  "artists": [1, 2],
   "lyrics": "Lal lalaal laalla al lal lalalal lalala.",
   "duration": "03:01",
   "releasedDate": "2005-12-12"

@@ -19,10 +19,9 @@ export class Song {
     @Column('text', { nullable: true })
     lyrics: string;
 
-    // @ManyToMany(() => Artist, (artist) => artist.songs, {cascade: true})
-    // @JoinTable({name: 'songs_artists'})
-    @Column('varchar', { array: true })
-    artists: string[];
+    @ManyToMany(() => Artist, (artist) => artist.songs, {cascade: true})
+    @JoinTable({name: 'songs_artists'})
+    artists: Artist[];
 
     @ManyToOne(() => Playlist, (playlist) => playlist.songs)
     playlist: Playlist;
