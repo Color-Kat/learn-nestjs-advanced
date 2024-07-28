@@ -56,3 +56,12 @@ Content-Type: application/json
   "email": "coco@co.co",
   "password": "123456"
 }
+
+### Login user using JWT
+POST http://localhost:3000/auth/login
+Content-Type: application/json
+
+{
+  "email": "coco@co.co",
+  "password": "123456"
+}
