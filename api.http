@@ -65,3 +65,7 @@ Content-Type: application/json
   "email": "coco@co.co",
   "password": "123456"
 }
+
+### Profile
+GET http://localhost:3000/profile
+Content-Type: application/json

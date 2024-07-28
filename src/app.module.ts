@@ -13,10 +13,11 @@ import { Playlist } from "@/playlist/playlist.entity";
 import { SongModule } from "@/song/song.module";
 import { SongController } from "@/song/song.controller";
 import { UserModule } from "@/user/user.module";
+import { ConfigModule } from "@nestjs/config";
 
 @Module({
     imports: [
-        SongModule,
+        ConfigModule.forRoot({isGlobal: true}),
         TypeOrmModule.forRoot({
             type: 'postgres',
             database: 'spotify_clone',
@@ -27,16 +28,16 @@ import { UserModule } from "@/user/user.module";
             entities: [User, Song, Artist, Playlist],
             synchronize: true
         }),
+        SongModule,
         PlaylistsModule,
         AuthModule,
-        UserModule
+        UserModule,
     ],
     controllers: [AppController],
     providers: [AppService]
 })
 export class AppModule implements NestModule {
     constructor(private dataSource: DataSource) {
-        console.log(dataSource.driver.database)
     }
 
     configure(consumer: MiddlewareConsumer): any {
