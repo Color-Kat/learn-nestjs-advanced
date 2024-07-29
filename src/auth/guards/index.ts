@@ -1,2 +1,2 @@
-export * from "./jwt.guard";
+export * from "./jwtAuthGuard";
 export * from "./artist.guard";

@@ -1,7 +1,7 @@
 import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { InjectRepository } from "@nestjs/typeorm";
 import { User } from "@/user/user.entity";
-import { Repository } from "typeorm";
+import { Repository, UpdateResult } from "typeorm";
 import { CreateUserDto } from "@/user/dto/create-user.dto";
 import * as bcrypt from 'bcryptjs';
 import { LoginDto } from "@/auth/dto/login.dto";
@@ -25,13 +25,36 @@ export class UserService {
         return user;
     }
 
-    async findOne(loginDto: LoginDto): Promise<User> {
-        const user = await this.userRepository.findOneBy({email: loginDto.email});
+    async findOneById(id: number): Promise<User> {
+        const user = await this.userRepository.findOneBy({id});
 
         if(!user) {
             throw new UnauthorizedException('Could not find the user');
         }
 
         return user;
+    }
+
+    async findOneByEmail(email: LoginDto['email']): Promise<User> {
+        const user = await this.userRepository.findOneBy({email: email});
+
+        if(!user) {
+            throw new UnauthorizedException('Could not find the user');
+        }
+
+        return user;
+    }
+
+    async update2FASecretKey(
+        userId: number,
+        secret: string
+    ): Promise<UpdateResult> {
+        return await this.userRepository.update(
+            { id: userId },
+            {
+                enable2FA: true,
+                twoFASecret: secret
+            }
+        );
     }
 }

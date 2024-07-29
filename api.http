@@ -71,3 +71,8 @@ Content-Type: application/json
 GET http://localhost:3000/profile
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNvY29AY28uY28iLCJ1c2VySWQiOjksImFydGlzdElkIjo2LCJpYXQiOjE3MjIyNTI3NjJ9.EzikzUAoN1o18XLTC9uOwIEMpKBzfRar64pW5CggTeg
 Content-Type: application/json
+
+### Enable 2FA
+GET http://localhost:3000/auth/enable-2fa
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNvY29AY28uY28iLCJ1c2VySWQiOjksImFydGlzdElkIjo2LCJpYXQiOjE3MjIyNTI3NjJ9.EzikzUAoN1o18XLTC9uOwIEMpKBzfRar64pW5CggTeg
+
