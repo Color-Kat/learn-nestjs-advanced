@@ -9,11 +9,12 @@ import {
     ParseIntPipe,
     Post,
     Put,
-    Query
+    Query, Request, UseGuards
 } from "@nestjs/common";
 import { SongService } from "./song.service";
 import { CreateSongDto } from "./dto";
 import { UpdateSongDto } from "./dto/update-song.dto";
+import { ArtistGuard } from "@/auth/guards";
 
 @Controller("songs")
 export class SongController {
@@ -47,9 +48,12 @@ export class SongController {
 
 
     @Post()
+    @UseGuards(ArtistGuard)
     create(
-        @Body() dto: CreateSongDto
+        @Body() dto: CreateSongDto,
+        @Request() req
     ) {
+        console.log(req.user);
         return this.songsService.create(dto);
     }
 

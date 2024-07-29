@@ -14,6 +14,7 @@ import { SongModule } from "@/song/song.module";
 import { SongController } from "@/song/song.controller";
 import { UserModule } from "@/user/user.module";
 import { ConfigModule } from "@nestjs/config";
+import { ArtistModule } from './artist/artist.module';
 
 @Module({
     imports: [
@@ -32,6 +33,7 @@ import { ConfigModule } from "@nestjs/config";
         PlaylistsModule,
         AuthModule,
         UserModule,
+        ArtistModule,
     ],
     controllers: [AppController],
     providers: [AppService]

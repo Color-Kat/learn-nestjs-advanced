@@ -13,13 +13,14 @@ GET http://localhost:3000/songs/2
 ### Create
 POST http://localhost:3000/songs
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNvY29AY28uY28iLCJ1c2VySWQiOjksImFydGlzdElkIjo2LCJpYXQiOjE3MjIyNTI3NjJ9.EzikzUAoN1o18XLTC9uOwIEMpKBzfRar64pW5CggTeg
 
 {
-  "title": "Машина для убийств",
-  "artists": [1, 2],
+  "title": "Unauthorized Artist",
+  "artists": [6],
   "lyrics": "Lal lalaal laalla al lal lalalal lalala.",
-  "duration": "03:01",
-  "releasedDate": "2005-12-12"
+  "duration": "01:01",
+  "releasedDate": "2024-05-18"
 }
 
 ### Update
@@ -68,4 +69,5 @@ Content-Type: application/json
 
 ### Profile
 GET http://localhost:3000/profile
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNvY29AY28uY28iLCJ1c2VySWQiOjksImFydGlzdElkIjo2LCJpYXQiOjE3MjIyNTI3NjJ9.EzikzUAoN1o18XLTC9uOwIEMpKBzfRar64pW5CggTeg
 Content-Type: application/json
