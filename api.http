@@ -82,7 +82,7 @@ Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNvY29AY28uY28iLCJ1c2VySWQiOjksImFydGlzdElkIjo2LCJpYXQiOjE3MjIyNzU5Mjl9.M79dL-_5ugqkEAQzVAIxTCSSJy8-e49qUi44z0Kj76Q
 
 {
-  "token": "444071"
+  "token": "253823"
 }
 
 ### Disavle 2FA
