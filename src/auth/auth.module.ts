@@ -5,6 +5,7 @@ import { UserModule } from "@/user/user.module";
 import { JwtModule, JwtService } from "@nestjs/jwt";
 import { JwtStrategy } from "src/auth/strategies";
 import { ArtistModule } from "@/artist/artist.module";
+import { UrlService } from "@/common/url.service";
 
 @Module({
     imports: [
@@ -12,7 +13,7 @@ import { ArtistModule } from "@/artist/artist.module";
         ArtistModule,
         JwtModule.register({})
     ],
-    providers: [AuthService, JwtService, JwtStrategy],
+    providers: [AuthService, JwtService, JwtStrategy, UrlService],
     controllers: [AuthController],
     exports: [AuthService]
 })

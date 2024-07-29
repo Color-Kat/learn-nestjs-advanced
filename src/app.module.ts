@@ -15,6 +15,7 @@ import { SongController } from "@/song/song.controller";
 import { UserModule } from "@/user/user.module";
 import { ConfigModule } from "@nestjs/config";
 import { ArtistModule } from './artist/artist.module';
+import { UrlService } from "@/common/url.service";
 
 @Module({
     imports: [
@@ -36,7 +37,10 @@ import { ArtistModule } from './artist/artist.module';
         ArtistModule,
     ],
     controllers: [AppController],
-    providers: [AppService]
+    providers: [
+        AppService,
+        UrlService
+    ]
 })
 export class AppModule implements NestModule {
     constructor(private dataSource: DataSource) {

@@ -8,18 +8,24 @@ import { ArtistService } from "@/artist/artist.service";
 import { Enable2FAType, JwtPayloadType } from "@/auth/types";
 import * as speakeasy from 'speakeasy';
 import { UpdateResult } from "typeorm";
+import { UrlService } from "@/common/url.service";
 
 @Injectable()
 export class AuthService {
     constructor(
         private readonly configService: ConfigService,
+        private readonly urlService: UrlService,
+
         private readonly userService: UserService,
         private readonly jwtService: JwtService,
         private readonly artistService: ArtistService
     ) {
     }
 
-    async login(loginDto: LoginDto): Promise<{ accessToken: string }> {
+    async login(loginDto: LoginDto): Promise<
+        { accessToken: string } |
+        { validate2FA: string, message: string }
+    > {
         const user = await this.userService.findOneByEmail(loginDto.email);
 
         // Check if password is correct
@@ -39,6 +45,16 @@ export class AuthService {
         const artist = await this.artistService.findArtistByUserId(user.id);
         if (artist) payload.artistId = artist.id;
 
+        // 2FA
+        if(user.enable2FA && user.twoFASecret) {
+            // Send the validation request link
+            return {
+                validate2FA: this.urlService.to('/auth/validate-2fa'),
+                message: 'Please, send the one time code from your Google Authenticator App'
+            }
+        }
+
+        // If 2FA is disabled, then send the JWT access token
         return {
             accessToken: this.jwtService.sign(
                 payload,
