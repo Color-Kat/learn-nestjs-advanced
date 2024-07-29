@@ -12,7 +12,8 @@ export class UserService {
     constructor(
         @InjectRepository(User)
         private readonly userRepository: Repository<User>
-    ) {}
+    ) {
+    }
 
     async create(userDto: CreateUserDto): Promise<User> {
         // Generate hash for password
@@ -26,9 +27,9 @@ export class UserService {
     }
 
     async findOneById(id: number): Promise<User> {
-        const user = await this.userRepository.findOneBy({id});
+        const user = await this.userRepository.findOneBy({ id });
 
-        if(!user) {
+        if (!user) {
             throw new UnauthorizedException('Could not find the user');
         }
 
@@ -36,9 +37,9 @@ export class UserService {
     }
 
     async findOneByEmail(email: LoginDto['email']): Promise<User> {
-        const user = await this.userRepository.findOneBy({email: email});
+        const user = await this.userRepository.findOneBy({ email: email });
 
-        if(!user) {
+        if (!user) {
             throw new UnauthorizedException('Could not find the user');
         }
 
@@ -54,6 +55,16 @@ export class UserService {
             {
                 enable2FA: true,
                 twoFASecret: secret
+            }
+        );
+    }
+
+    async disable2FA(userId: number): Promise<UpdateResult> {
+        return this.userRepository.update(
+            { id: userId },
+            {
+                enable2FA: false,
+                twoFASecret: null
             }
         );
     }

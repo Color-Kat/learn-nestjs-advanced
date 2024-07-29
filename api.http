@@ -76,3 +76,15 @@ Content-Type: application/json
 GET http://localhost:3000/auth/enable-2fa
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNvY29AY28uY28iLCJ1c2VySWQiOjksImFydGlzdElkIjo2LCJpYXQiOjE3MjIyNTI3NjJ9.EzikzUAoN1o18XLTC9uOwIEMpKBzfRar64pW5CggTeg
 
+### Validate 2FA
+POST http://localhost:3000/auth/validate-2fa
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNvY29AY28uY28iLCJ1c2VySWQiOjksImFydGlzdElkIjo2LCJpYXQiOjE3MjIyNzU5Mjl9.M79dL-_5ugqkEAQzVAIxTCSSJy8-e49qUi44z0Kj76Q
+
+{
+  "token": "444071"
+}
+
+### Disavle 2FA
+GET http://localhost:3000/auth/disable-2fa
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNvY29AY28uY28iLCJ1c2VySWQiOjksImFydGlzdElkIjo2LCJpYXQiOjE3MjIyNTI3NjJ9.EzikzUAoN1o18XLTC9uOwIEMpKBzfRar64pW5CggTeg

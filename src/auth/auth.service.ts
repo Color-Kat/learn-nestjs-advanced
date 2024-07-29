@@ -7,6 +7,7 @@ import { ConfigService } from "@nestjs/config";
 import { ArtistService } from "@/artist/artist.service";
 import { Enable2FAType, JwtPayloadType } from "@/auth/types";
 import * as speakeasy from 'speakeasy';
+import { UpdateResult } from "typeorm";
 
 @Injectable()
 export class AuthService {
@@ -54,10 +55,32 @@ export class AuthService {
             return { secret: user.twoFASecret };
         }
 
+        // Generate 2FA secret token
         const secret = speakeasy.generateSecret();
         user.twoFASecret = secret.base32;
 
         await this.userService.update2FASecretKey(user.id, user.twoFASecret);
         return { secret: user.twoFASecret };
+    }
+
+    async validate2FAToken(
+        userId: number,
+        token: string
+    ): Promise<{verified: boolean}> {
+        // Find user by provided id
+        const user = await this.userService.findOneById(userId);
+
+        // Validate 2FA
+        const verified = speakeasy.totp.verify({
+            secret: user.twoFASecret,
+            encoding: 'base32',
+            token
+        });
+
+        return {verified};
+    }
+
+    async disable2FA(userId: number): Promise<UpdateResult> {
+        return this.userService.disable2FA(userId);
     }
 }
