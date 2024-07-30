@@ -1,6 +1,6 @@
-import { JwtAuthGuard } from "@/auth/guards/jwtAuthGuard";
 import { ExecutionContext, Injectable, UnauthorizedException } from "@nestjs/common";
 import { Observable } from "rxjs";
+import { JwtAuthGuard } from "@/auth/guards";
 
 @Injectable()
 export class ArtistGuard extends JwtAuthGuard {

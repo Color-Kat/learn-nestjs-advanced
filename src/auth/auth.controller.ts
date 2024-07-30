@@ -1,10 +1,12 @@
 import { Body, Controller, Get, Post, UseGuards } from '@nestjs/common';
 import { UserService } from "@/user/user.service";
-import { CreateUserDto } from "@/user/dto/create-user.dto";
+import { CreateUserDto } from "@/user/dto";
 import { AuthService } from "@/auth/auth.service";
 import { LoginDto, Validate2FATokenDto } from "@/auth/dto";
-import { JwtAuthGuard } from "@/auth/guards";
 import { GetUser } from "@/auth/decorator";
+import { JwtAuthGuard } from "@/auth/guards";
+import { AuthGuard } from "@nestjs/passport";
+import { User } from "@/user/user.entity";
 
 @Controller('auth')
 export class AuthController {
@@ -54,5 +56,18 @@ export class AuthController {
             userId,
             validateTokenDto.token
         );
+    }
+
+    @Get('profile')
+    @UseGuards(AuthGuard('bearer'))
+    getProfile(
+        @GetUser() user: User
+    ) {
+        delete user.password;
+
+        return {
+            message: 'auth with api key',
+            user
+        };
     }
 }

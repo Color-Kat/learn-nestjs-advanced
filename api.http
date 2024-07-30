@@ -52,9 +52,9 @@ POST http://localhost:3000/auth/register
 Content-Type: application/json
 
 {
-  "firstName": "coco",
-  "lastName": "sh",
-  "email": "coco@co.co",
+  "firstName": "colorkat",
+  "lastName": "great",
+  "email": "colorkat@co.co",
   "password": "123456"
 }
 
@@ -88,3 +88,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNvY29AY
 ### Disavle 2FA
 GET http://localhost:3000/auth/disable-2fa
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNvY29AY28uY28iLCJ1c2VySWQiOjksImFydGlzdElkIjo2LCJpYXQiOjE3MjIyNTI3NjJ9.EzikzUAoN1o18XLTC9uOwIEMpKBzfRar64pW5CggTeg
+
+### Access prifle WITH API KEY (doesn't work :{)
+GET http://localhost:3000/auth/profile
+Authorization: Bearer f9620123-d6aa-4030-9bfe-4303d169a96f

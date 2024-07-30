@@ -99,4 +99,9 @@ export class AuthService {
     async disable2FA(userId: number): Promise<UpdateResult> {
         return this.userService.disable2FA(userId);
     }
+
+    validateUserByApiKey(apiKey: string) {
+        // Return true if user with provided api key exists
+        return !!this.userService.findOneByApiKey(apiKey);
+    }
 }

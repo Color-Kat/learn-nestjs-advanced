@@ -26,6 +26,9 @@ export class User {
     @Column({default: false, type: 'boolean'})
     enable2FA: boolean;
 
+    @Column()
+    apiKey: string;
+
     // User can create many playlists
     @OneToMany(() => Playlist, (playlist) => playlist.user)
     playlists: Playlist[];
