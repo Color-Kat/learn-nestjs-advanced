@@ -17,6 +17,7 @@ import { ConfigModule } from "@nestjs/config";
 import { ArtistModule } from './artist/artist.module';
 import { UrlService } from "@/common/url.service";
 import { dataSourceOptions } from "../database/data-source";
+import { SeedModule } from './seed/seed.module';
 
 @Module({
     imports: [
@@ -27,6 +28,7 @@ import { dataSourceOptions } from "../database/data-source";
         AuthModule,
         UserModule,
         ArtistModule,
+        SeedModule,
     ],
     controllers: [AppController],
     providers: [
