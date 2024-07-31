@@ -53,7 +53,6 @@ export class SongController {
         @Body() dto: CreateSongDto,
         @Request() req
     ) {
-        console.log(req.user);
         return this.songsService.create(dto);
     }
 

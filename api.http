@@ -13,7 +13,7 @@ GET http://localhost:3000/songs/2
 ### Create
 POST http://localhost:3000/songs
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNvY29AY28uY28iLCJ1c2VySWQiOjksImFydGlzdElkIjo2LCJpYXQiOjE3MjIyNTI3NjJ9.EzikzUAoN1o18XLTC9uOwIEMpKBzfRar64pW5CggTeg
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNvY29AY28uY28iLCJ1c2VySWQiOjksImFydGlzdElkIjo2LCJpYXQiOjE3MjIzNjk2NTR9._tdds1-fRhtm9R946ue05MxOSM8ckZIlyP3uZ4VqSOk
 
 {
   "title": "Unauthorized Artist",
@@ -89,6 +89,6 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNvY29AY
 GET http://localhost:3000/auth/disable-2fa
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNvY29AY28uY28iLCJ1c2VySWQiOjksImFydGlzdElkIjo2LCJpYXQiOjE3MjIyNTI3NjJ9.EzikzUAoN1o18XLTC9uOwIEMpKBzfRar64pW5CggTeg
 
-### Access prifle WITH API KEY (doesn't work :{)
+### Access profle WITH API KEY (doesn't work :{)
 GET http://localhost:3000/auth/profile
 Authorization: Bearer f9620123-d6aa-4030-9bfe-4303d169a96f

@@ -80,6 +80,7 @@ export class UserService {
     }
 
     async disable2FA(userId: number): Promise<UpdateResult> {
+
         return this.userRepository.update(
             { id: userId },
             {

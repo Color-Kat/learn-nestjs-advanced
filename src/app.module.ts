@@ -16,20 +16,12 @@ import { UserModule } from "@/user/user.module";
 import { ConfigModule } from "@nestjs/config";
 import { ArtistModule } from './artist/artist.module';
 import { UrlService } from "@/common/url.service";
+import { dataSourceOptions } from "../database/data-source";
 
 @Module({
     imports: [
         ConfigModule.forRoot({isGlobal: true}),
-        TypeOrmModule.forRoot({
-            type: 'postgres',
-            database: 'spotify_clone',
-            host: 'localhost',
-            port: 5432,
-            username: 'postgres',
-            password: 'root',
-            entities: [User, Song, Artist, Playlist],
-            synchronize: true
-        }),
+        TypeOrmModule.forRoot(dataSourceOptions),
         SongModule,
         PlaylistsModule,
         AuthModule,
