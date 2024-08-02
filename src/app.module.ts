@@ -19,12 +19,14 @@ import { UrlService } from "@/common/url.service";
 import { dataSourceOptions, typeOrmAsyncConfig } from "../database/data-source";
 import { SeedModule } from "./seed/seed.module";
 import configuration from "@/config/configuration";
+import { validate } from "../env.validation";
 
 @Module({
     imports    : [
         ConfigModule.forRoot({
             isGlobal: true,
-            load    : [configuration]
+            load    : [configuration],
+            validate
         }),
         TypeOrmModule.forRootAsync(typeOrmAsyncConfig),
         SongModule,
