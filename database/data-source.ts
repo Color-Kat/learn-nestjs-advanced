@@ -1,42 +1,41 @@
 import { DataSource, DataSourceOptions } from "typeorm";
 import { ConfigModule, ConfigService } from "@nestjs/config";
-import { User } from "@/user/user.entity";
-import { Song } from "@/song/song.entity";
-import { Artist } from "@/artist/artist.entity";
-import { Playlist } from "@/playlist/playlist.entity";
+import { TypeOrmModuleAsyncOptions, TypeOrmModuleOptions } from "@nestjs/typeorm";
+import * as process from "process";
+
+// Not work
+export const typeOrmAsyncConfig: TypeOrmModuleAsyncOptions = {
+    imports   : [ConfigModule],
+    inject    : [ConfigService],
+    useFactory: async (configService: ConfigService): Promise<TypeOrmModuleOptions> => {
+        return {
+            type    : "postgres",
+            host    : configService.get<string>("database.host"),
+            port    : configService.get<number>("database.port"),
+            database: configService.get<string>("database.name"),
+            username: configService.get<string>("database.username"),
+            password: configService.get<string>("database.password"),
+
+            entities   : ["dist/**/*.entity.js"],
+            synchronize: false,
+            migrations : ["dist/db/migrations/*.js"]
+        };
+    }
+};
 
 
 export const dataSourceOptions: DataSourceOptions = {
-    type: 'postgres',
-    database: 'spotify_clone',
-    host: 'localhost',
-    port: 5432,
-    username: 'postgres',
-    password: 'root',
+    type    : "postgres",
+    database: process.env.DB_NAME,
+    host    : process.env.DB_HOST,
+    port    : parseInt(process.env.DB_PORT) || 3000,
+    username: process.env.DB_USERNAME,
+    password: process.env.DB_PASSWORD,
 
-    entities: ['dist/**/*.entity.js'],
-    synchronize: true,
-    migrations: ['dist/database/migrations/*.js']
+    entities   : ["dist/**/*.entity.js"],
+    synchronize: false,
+    migrations : ["dist/database/migrations/*.js"]
 };
 
 const dataSource = new DataSource(dataSourceOptions);
 export default dataSource;
-
-
-// Not work
-// export const dataSourceOptionsAsync: (
-//     configService: ConfigService
-// ) => Promise<DataSourceOptions> = async (
-//     configService
-// ): Promise<DataSourceOptions> => ({
-//     type: configService.get<'postgres' | 'mysql'>('DB_DRIVER'),
-//     host: configService.get<string>('DB_HOST'),
-//     port: configService.get<number>('DB_PORT'),
-//     database: configService.get<string>('DB_NAME'),
-//     username: configService.get<string>('DB_USERNAME'),
-//     password: configService.get<string>('DB_PASSWORD'),
-//
-//     entities: ['dist/**/*.entity.js'],
-//     synchronize: true,
-//     migrations: ['dist/db/migrations/*.js']
-// });

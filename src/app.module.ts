@@ -14,24 +14,28 @@ import { SongModule } from "@/song/song.module";
 import { SongController } from "@/song/song.controller";
 import { UserModule } from "@/user/user.module";
 import { ConfigModule } from "@nestjs/config";
-import { ArtistModule } from './artist/artist.module';
+import { ArtistModule } from "./artist/artist.module";
 import { UrlService } from "@/common/url.service";
-import { dataSourceOptions } from "../database/data-source";
-import { SeedModule } from './seed/seed.module';
+import { dataSourceOptions, typeOrmAsyncConfig } from "../database/data-source";
+import { SeedModule } from "./seed/seed.module";
+import configuration from "@/config/configuration";
 
 @Module({
-    imports: [
-        ConfigModule.forRoot({isGlobal: true}),
-        TypeOrmModule.forRoot(dataSourceOptions),
+    imports    : [
+        ConfigModule.forRoot({
+            isGlobal: true,
+            load    : [configuration]
+        }),
+        TypeOrmModule.forRootAsync(typeOrmAsyncConfig),
         SongModule,
         PlaylistsModule,
         AuthModule,
         UserModule,
         ArtistModule,
-        SeedModule,
+        SeedModule
     ],
     controllers: [AppController],
-    providers: [
+    providers  : [
         AppService,
         UrlService
     ]
