@@ -1,0 +1,10 @@
+### Create Song
+POST http://localhost:3000/songs
+Content-Type: application/json
+
+{
+  "title": "test 2",
+  "releasedDate": "2020-06-01",
+  "duration": "02:22",
+  "lyrics": "lalalalalalalal two"
+}
