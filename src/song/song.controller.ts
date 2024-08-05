@@ -15,8 +15,10 @@ import { SongService } from "./song.service";
 import { CreateSongDto } from "./dto";
 import { UpdateSongDto } from "./dto/update-song.dto";
 import { ArtistGuard } from "@/auth/guards";
+import { ApiTags } from "@nestjs/swagger";
 
 @Controller("songs")
+@ApiTags("Songs")
 export class SongController {
 
     constructor(private songsService: SongService) {}

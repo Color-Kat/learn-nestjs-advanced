@@ -7,8 +7,10 @@ import { GetUser } from "@/auth/decorator";
 import { JwtAuthGuard } from "@/auth/guards";
 import { AuthGuard } from "@nestjs/passport";
 import { User } from "@/user/user.entity";
+import { ApiOperation, ApiResponse, ApiTags } from "@nestjs/swagger";
 
 @Controller('auth')
+@ApiTags('Auth')
 export class AuthController {
     constructor(
         private readonly userService: UserService,
@@ -17,6 +19,11 @@ export class AuthController {
     }
 
     @Post('register')
+    @ApiOperation({summary: 'Register a new user'})
+    @ApiResponse({
+        status: 201,
+        description: 'The user has been successfully created, it will return the created user.',
+    })
     register(
         @Body() userDto: CreateUserDto
     ) {
@@ -24,6 +31,11 @@ export class AuthController {
     }
 
     @Post('login')
+    @ApiOperation({summary: 'Login a user'})
+    @ApiResponse({
+        status: 200,
+        description: 'The user has been successfully logged in, it will return the jwt access_token.',
+    })
     login(
         @Body() loginDto: LoginDto
     ) {

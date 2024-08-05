@@ -18,13 +18,24 @@ async function bootstrap() {
 
     // Swagger setup
     const swaggerConfig = new DocumentBuilder()
-        .setTitle('Spotify Clone')
-        .setDescription('The spotify clone API documentation by @ColorKat')
-        .setVersion('1.0')
+        .setTitle("Spotify Clone")
+        .setDescription("The spotify clone API documentation by @ColorKat")
+        .setVersion("1.0")
+        .addBearerAuth(
+            {
+                type        : "http",
+                scheme      : "bearer",
+                bearerFormat: "JWT",
+                name        : "JWT",
+                description : "Enter JWT token",
+                in          : "header"
+            },
+            "JWT-auth"
+        )
         .build();
 
     const document = SwaggerModule.createDocument(app, swaggerConfig);
-    SwaggerModule.setup('api', app, document);
+    SwaggerModule.setup("api", app, document);
 
     await app.listen(configService.get<number>("port"));
 

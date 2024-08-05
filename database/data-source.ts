@@ -2,6 +2,10 @@ import { DataSource, DataSourceOptions } from "typeorm";
 import { ConfigModule, ConfigService } from "@nestjs/config";
 import { TypeOrmModuleAsyncOptions, TypeOrmModuleOptions } from "@nestjs/typeorm";
 import * as process from "process";
+import { Artist } from "@/artist/artist.entity";
+import { User } from "@/user/user.entity";
+import { Song } from "@/song/song.entity";
+import { Playlist } from "@/playlist/playlist.entity";
 
 // Not work
 export const typeOrmAsyncConfig: TypeOrmModuleAsyncOptions = {
@@ -16,7 +20,7 @@ export const typeOrmAsyncConfig: TypeOrmModuleAsyncOptions = {
             username: configService.get<string>("database.username"),
             password: configService.get<string>("database.password"),
 
-            entities   : ["dist/**/*.entity.js"],
+            entities   : [User, Artist, Song, Playlist],
             synchronize: false,
             migrations : ["dist/db/migrations/*.js"]
         };
