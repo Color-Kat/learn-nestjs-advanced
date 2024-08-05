@@ -1,0 +1,9 @@
+version: '1'
+
+services:
+  mongoDB:
+    image: mongo:latest
+    environment:
+      - MONGODB_DATABASE="spotify_clone"
+    ports:
+      - 27017:27017
