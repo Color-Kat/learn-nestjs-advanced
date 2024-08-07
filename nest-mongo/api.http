@@ -3,8 +3,35 @@ POST http://localhost:3000/songs
 Content-Type: application/json
 
 {
-  "title": "test 2",
+  "title": "deleted",
   "releasedDate": "2020-06-01",
   "duration": "02:22",
   "lyrics": "lalalalalalalal two"
 }
+
+### Fing all songs
+GET http://localhost:3000/songs
+Content-Type: application/json
+
+### Fing song by id
+GET http://localhost:3000/songs/66b1139b99d9d962f8cbb7c8
+Content-Type: application/json
+
+### Fing song by id
+DELETE http://localhost:3000/songs/66b321819dd81f7880787310
+Content-Type: application/json
+
+# Albums
+
+### Create an album
+POST http://localhost:3000/albums
+Content-Type: application/json
+
+{
+  "title": "Loom",
+  "songs": ["66b1135f99d9d962f8cbb7c6", "66b1139b99d9d962f8cbb7c8"]
+}
+
+### Fing all albums
+GET http://localhost:3000/albums
+Content-Type: application/json
