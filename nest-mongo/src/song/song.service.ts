@@ -13,25 +13,25 @@ export class SongService {
     ) {
     }
 
-    async create(createSongDto: CreateSongDto): Promise<Song> {
+    async createSong(createSongDto: CreateSongDto): Promise<Song> {
         const song = await this.songModel.create(createSongDto);
 
         return song;
     }
 
-    findAll() {
-        return `This action returns all song`;
+    findAllSongs(): Promise<Song[]> {
+        return this.songModel.find();
     }
 
-    findOne(id: number) {
-        return `This action returns a #${id} song`;
+    findSongById(id: string): Promise<Song> {
+        return this.songModel.findById(id);
     }
 
-    update(id: number, updateSongDto: UpdateSongDto) {
-        return `This action updates a #${id} song`;
-    }
+    // update(id: string, updateSongDto: UpdateSongDto) {
+    //     return `This action updates a #${id} song`;
+    // }
 
-    remove(id: number) {
-        return `This action removes a #${id} song`;
+    deleteSong(id: string) {
+        return this.songModel.deleteOne({ _id: id });
     }
 }
