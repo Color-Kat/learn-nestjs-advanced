@@ -7,7 +7,8 @@ import { User } from "@/user/user.entity";
 import { Song } from "@/song/song.entity";
 import { Playlist } from "@/playlist/playlist.entity";
 
-// Not work
+require("dotenv").config();
+
 export const typeOrmAsyncConfig: TypeOrmModuleAsyncOptions = {
     imports   : [ConfigModule],
     inject    : [ConfigService],

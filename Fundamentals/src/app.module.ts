@@ -25,6 +25,7 @@ import { validate } from "../env.validation";
     imports    : [
         ConfigModule.forRoot({
             isGlobal: true,
+            envFilePath: [`${process.cwd()}/.env.${process.env.NODE_ENV}`],
             load    : [configuration],
             validate
         }),
@@ -42,15 +43,4 @@ import { validate } from "../env.validation";
         UrlService
     ]
 })
-export class AppModule implements NestModule {
-    constructor(private dataSource: DataSource) {
-    }
-
-    configure(consumer: MiddlewareConsumer): any {
-        // consumer.apply(LoggerMiddleware).forRoutes('songs');
-        // consumer.apply(LoggerMiddleware).forRoutes({path: 'songs', method: RequestMethod.POST});
-
-        consumer.apply(LoggerMiddleware).forRoutes(SongController);
-    }
-
-}
+export class AppModule {}

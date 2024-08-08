@@ -1,5 +1,4 @@
 import { IsEnum, IsNumber, IsString, validateSync } from "class-validator";
-import { IsNull } from "typeorm";
 import { plainToInstance } from "class-transformer";
 
 enum Environment {
