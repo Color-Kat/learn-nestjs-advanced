@@ -1,5 +1,5 @@
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
-import { Playlist } from "@/playlist/playlist.entity";
+import { Playlist } from "../playlist/playlist.entity";
 import { Exclude } from "class-transformer";
 import { ApiProperty } from "@nestjs/swagger";
 

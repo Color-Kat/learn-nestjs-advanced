@@ -6,7 +6,7 @@ import { LoginDto, Validate2FATokenDto } from "@/auth/dto";
 import { GetUser } from "@/auth/decorator";
 import { JwtAuthGuard } from "@/auth/guards";
 import { AuthGuard } from "@nestjs/passport";
-import { User } from "@/user/user.entity";
+import { User } from "../user/user.entity";
 import { ApiOperation, ApiResponse, ApiTags } from "@nestjs/swagger";
 
 @Controller('auth')

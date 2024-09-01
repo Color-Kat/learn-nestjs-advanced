@@ -23,10 +23,10 @@ export class SongController {
 
     constructor(private songsService: SongService) {}
 
-    // @Get()
-    // findAll() {
-    //     return this.songsService.findAll();
-    // }
+    @Get('/all')
+    findAll() {
+        return this.songsService.findAll();
+    }
 
     @Get()
     findAllWithPagination(
